@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env
+
+# Hugging Face / model caches
+.cache/
+.huggingface/
+
+# Qwen / TTS model weights (DO NOT COMMIT)
+qwen3_tts_model/
+*.safetensors
+*.bin
+
+# Audio outputs
+*.wav
+*.mp3
+
+# OS
+.DS_Store
