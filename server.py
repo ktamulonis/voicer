@@ -45,12 +45,14 @@ async def voice_clone(
     content_type = request.headers.get("content-type", "")
     json_ref_bytes = None
     json_text = None
+    json_reference_text = None
 
     if content_type.startswith("application/json"):
         data = await request.json()
         payload = VoiceCloneJSONRequest(**data)
         json_text = payload.text
         json_ref_bytes = decode_base64_audio(payload.reference)
+        json_reference_text = payload.reference_text
 
     effective_text = (json_text if json_text is not None else text) or ""
     effective_text = effective_text.strip()
@@ -75,6 +77,7 @@ async def voice_clone(
         effective_text,
         ref_bytes,
         filename,
+        json_reference_text,
     )
     return StreamingResponse(
         io.BytesIO(wav_bytes),

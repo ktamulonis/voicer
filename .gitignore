@@ -7,6 +7,8 @@ __pycache__/
 # Virtual environments
 venv/
 .env
+.env.*
+!.env.example
 
 # Hugging Face / model caches
 .cache/
@@ -17,9 +19,16 @@ qwen3_tts_model/
 *.safetensors
 *.bin
 
-# Audio outputs
+# Uploaded reference media and generated outputs (never commit voice samples)
 *.wav
 *.mp3
+*.m4a
+*.aac
+*.flac
+*.ogg
+*.mp4
+*.mov
+*.webm
 
 # OS
 .DS_Store

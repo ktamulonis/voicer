@@ -58,6 +58,13 @@ curl -X POST http://localhost:7341/voice-clone \\
   --output clone.wav
 ```
 
+## Voice Cloning Quality Notes
+
+- Use a clean, close-mic recording with minimal background noise.
+- Keep reference audio between ~5–20 seconds for best speaker identity.
+- Preprocessing applies gentle band-limiting and RMS normalization to reduce metallic artifacts.
+- If output still sounds buzzy, try a different reference with less sibilance.
+
 ## Rails-friendly usage
 
 - JSON TTS: `POST /tts` with `{"text":"..."}`; response is `audio/wav`.
