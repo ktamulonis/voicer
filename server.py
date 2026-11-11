@@ -41,11 +41,12 @@ async def voice_clone(
     request: Request,
     text: Optional[str] = Form(None),
     reference: Optional[UploadFile] = File(None),
+    reference_text: Optional[str] = Form(None),
 ):
     content_type = request.headers.get("content-type", "")
     json_ref_bytes = None
     json_text = None
-    json_reference_text = None
+    json_reference_text = reference_text
 
     if content_type.startswith("application/json"):
         data = await request.json()
@@ -89,4 +90,4 @@ async def voice_clone(
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run("server:app", host="0.0.0.0", port=7341)
+    uvicorn.run("server:app", host="127.0.0.1", port=7341)
