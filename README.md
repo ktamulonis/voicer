@@ -12,7 +12,8 @@ to use it.
 - Apple Silicon macOS (the service also runs on other Python-supported systems)
 - Homebrew
 - Python 3.11 or newer
-- Enough disk space for the Qwen3-TTS 1.7B Base model
+- An internet connection for the one-time model download (about 4.6 GB)
+- Enough disk and memory for the Qwen3-TTS 1.7B Base model
 
 The model weights and any reference/output media are deliberately ignored by
 Git. Download them locally; do not commit them to a public repository.
@@ -27,15 +28,19 @@ brew install python@3.11 libsndfile ffmpeg sox
 python3.11 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
-python -m pip install -r requirements.txt -r qwen3_tts_space/requirements.txt
+python -m pip install -r requirements.txt -r qwen3_tts_space/requirements.txt huggingface_hub
 ```
 
 Download the public Qwen model into the location the service expects:
 
 ```sh
-python -m huggingface_hub download Qwen/Qwen3-TTS-12Hz-1.7B-Base \
+hf download Qwen/Qwen3-TTS-12Hz-1.7B-Base \
   --local-dir qwen3_tts_model
 ```
+
+The Qwen model is public, so a Hugging Face access token is not normally
+required. The command creates the local `qwen3_tts_model/` folder; Voicer will
+not start until that folder contains the downloaded model files.
 
 ## Start and verify
 
